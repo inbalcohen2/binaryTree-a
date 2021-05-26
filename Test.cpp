@@ -6,21 +6,18 @@
 using namespace std;
 #include "BinaryTree.hpp"
 using namespace ariel;
-
-// check if the root is the last number that we add 
 TEST_CASE ("add root-int") {
     BinaryTree<int> tree_of_ints_root;
     CHECK_NOTHROW(tree_of_ints_root.add_root(1));
     auto it=tree_of_ints_root.begin_inorder();
-    
     CHECK((*it)==1);
     for (int i = 0; i < 3; i++) {
         tree_of_ints_root.add_root(i);
     }
      it=tree_of_ints_root.begin_inorder();
     CHECK((*it)==2);
-// check now root-string
-    }
+
+        }
 TEST_CASE ("add root-string") {
     BinaryTree<string> tree_of_strings_root;
     CHECK_NOTHROW(tree_of_strings_root.add_root("inbal"));
@@ -28,10 +25,8 @@ TEST_CASE ("add root-string") {
     CHECK((*it)=="inbal");
     CHECK_NOTHROW(tree_of_strings_root.add_root("inbal"));
     CHECK_NOTHROW(tree_of_strings_root.add_root("cohen"));
-    it=tree_of_strings_root.begin_preorder();
     CHECK((*it)=="cohen");
     }
-    // checkd if the add left is work 
 TEST_CASE ("add left-int") {
     BinaryTree<int> tree_of_ints_left;
     CHECK_THROWS(tree_of_ints_left.add_left(1, 2));//not have yet a root
@@ -62,8 +57,6 @@ TEST_CASE ("add left-int") {
         CHECK((*it)==arrPreorder[i++]);   
     }
     }
-        // check if the add right is work 
-
      TEST_CASE ("add right-int") {
     BinaryTree<int> tree_of_ints_right;
     CHECK_THROWS(tree_of_ints_right.add_right(2, 1));//not have a root yet
@@ -94,7 +87,6 @@ TEST_CASE ("add left-int") {
         CHECK((*it)==arrPreorder[i++]);   
     }
      }
-     // check all  tree _root_left_right -int
 TEST_CASE ("full binart tree- int") {
     BinaryTree<int> tree_of_ints_full;
     CHECK_THROWS(tree_of_ints_full.add_right(1, 2));///not have root 
@@ -126,29 +118,29 @@ TEST_CASE ("full binart tree- int") {
         CHECK((*it)==arrPreorder[i++]);   
     }
      }
-     // check all  tree _root_left_right -string
 
 TEST_CASE(" Binary tree (root_left_right )-string"){
 
     BinaryTree<string> bTree_full_String;
     CHECK_THROWS(bTree_full_String.add_left("i","a"));//not have a root yet
-    CHECK_THROWS(bTree_full_String.add_right("a", "l"));
+    CHECK_THROWS(bTree_full_String.add_right("a", "l_"));
     CHECK_NOTHROW(bTree_full_String.add_root("s"));//s
     CHECK_NOTHROW(bTree_full_String.add_root("i"));//i
     CHECK_NOTHROW(bTree_full_String.add_left("i","n"));
     CHECK_NOTHROW(bTree_full_String.add_right("n", "a"));
-    CHECK_NOTHROW(bTree_full_String.add_right("a", "l"));
+    CHECK_NOTHROW(bTree_full_String.add_right("a", "l_"));
     CHECK_NOTHROW(bTree_full_String.add_left("n", "b"));
     CHECK_NOTHROW(bTree_full_String.add_right("i","c"));
     CHECK_NOTHROW(bTree_full_String.add_left("c","o"));
-    CHECK_NOTHROW(bTree_full_String.add_right("c","e"));
-    CHECK_NOTHROW(bTree_full_String.add_left("e", "h"));
-    CHECK_NOTHROW(bTree_full_String.add_right("e","n"));
+    CHECK_NOTHROW(bTree_full_String.add_right("c","h"));
+    CHECK_NOTHROW(bTree_full_String.add_left("h", "e"));
+    CHECK_NOTHROW(bTree_full_String.add_right("h","n"));
+    string Postorder[]={"b","l_","a","n","o","e","n","h","c","i"};
+    string Inorder[]={"b","n","a","l_","i","o","c","e","h","n"};
 
-    string Inorder[]={"b","n","a","l","i","c","o","h","e","n"};
-    // i n b a l c o h e n
-    string Preorder[]={"i","n","b","a","l","c","o","e","h","n"};
-    string Postorder[]={"b","l","a","n","c","h","n","e","o","i"};
+    //i n b a l_ c o h e n 
+    string Preorder[]={"i","n","b","a","l_","c","o","h","e","n"};
+    
     int i=0;
     for (auto it=bTree_full_String.begin_inorder(); it!=bTree_full_String.end_inorder(); ++it) {
         CHECK((*it)==Inorder[i++]);
@@ -161,4 +153,4 @@ TEST_CASE(" Binary tree (root_left_right )-string"){
     for (auto it=bTree_full_String.begin_postorder(); it!=bTree_full_String.end_postorder(); ++it) {
         CHECK((*it)==Postorder[i++]);    
     }
-} 
+}
